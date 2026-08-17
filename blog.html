@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog - NaijaCash</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary-green: #0A5C36;
+            --dark-green: #064E3B;
+            --gold: #D4AF37;
+            --light-gold: #FDF8E2;
+            --dark: #111827;
+            --light-bg: #F9FBF8;
+            --white: #FFFFFF;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: var(--light-bg);
+            color: var(--dark);
+            min-height: 100vh;
+            padding: 1.5rem 1rem;
+            background-image: radial-gradient(rgba(10, 92, 54, 0.12) 1.5px, transparent 1.5px);
+            background-size: 24px 24px;
+        }
+
+        .container {
+            max-width: 480px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        /* Header */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .back-btn {
+            background: var(--white);
+            border: none;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            cursor: pointer;
+            font-size: 1.1rem;
+            color: var(--dark);
+            text-decoration: none;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-green);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .logo span {
+            color: var(--gold);
+        }
+
+        .placeholder-space {
+            width: 45px;
+        }
+
+        /* Top Banner */
+        .blog-banner {
+            background: linear-gradient(145deg, #075230, #043821);
+            border-radius: 20px;
+            padding: 1.5rem;
+            color: var(--white);
+            box-shadow: 0 15px 35px rgba(10, 92, 54, 0.3);
+            border: 1px solid rgba(212, 175, 55, 0.4);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .blog-banner h2 {
+            font-size: 1.3rem;
+            margin-bottom: 0.2rem;
+        }
+
+        .blog-banner p {
+            font-size: 0.85rem;
+            color: #D1D5DB;
+        }
+
+        .create-post-btn {
+            background: linear-gradient(135deg, var(--gold), #B8860B);
+            color: var(--white);
+            border: none;
+            padding: 0.6rem 1rem;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.8rem;
+            cursor: pointer;
+            text-decoration: none;
+            box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3);
+            white-space: nowrap;
+        }
+
+        /* Blog Posts List Container */
+        .blogs-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+        }
+
+        .blog-card {
+            background: var(--white);
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid rgba(212, 175, 55, 0.25);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .blog-img-placeholder {
+            height: 140px;
+            background: var(--light-gold);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-green);
+            font-size: 2.5rem;
+        }
+
+        .blog-content {
+            padding: 1.2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+        }
+
+        .blog-tag {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--primary-green);
+            background: #E6F4EA;
+            padding: 0.2rem 0.6rem;
+            border-radius: 50px;
+            width: max-content;
+        }
+
+        .blog-card h3 {
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: var(--dark);
+            line-height: 1.3;
+        }
+
+        .blog-excerpt {
+            font-size: 0.85rem;
+            color: #4B5563;
+            line-height: 1.4;
+        }
+
+        .blog-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid #F3F4F6;
+            padding: 0.8rem 1.2rem;
+            font-size: 0.8rem;
+            color: #6B7280;
+        }
+
+        .btn-read {
+            background: var(--primary-green);
+            color: var(--white);
+            border: none;
+            padding: 0.4rem 1rem;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.8rem;
+            cursor: pointer;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <!-- Header -->
+        <header>
+            <a href="dashboard.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i></a>
+            <a href="index.html" class="logo">Naija<span>Cash</span></a>
+            <div class="placeholder-space"></div>
+        </header>
+
+        <!-- Banner -->
+        <div class="blog-banner">
+            <div>
+                <h2>NaijaCash Blog</h2>
+                <p>Read tips & start publishing</p>
+            </div>
+            <a href="#" class="create-post-btn"><i class="fa-solid fa-plus"></i> New Post</a>
+        </div>
+
+        <!-- Blog Posts List -->
+        <div class="blogs-list">
+            
+            <!-- Blog Card 1 -->
+            <div class="blog-card">
+                <div class="blog-img-placeholder"><i class="fa-solid fa-chart-line"></i></div>
+                <div class="blog-content">
+                    <span class="blog-tag">Earning Tips</span>
+                    <h3>How to Maximize Your Daily Job Earnings on NaijaCash</h3>
+                    <p class="blog-excerpt">
+                        Discover proven strategies and timing tricks to complete online tasks faster and boost your daily payout without breaking a sweat.
+                    </p>
+                </div>
+                <div class="blog-footer">
+                    <span><i class="fa-regular fa-clock"></i> 3 mins read</span>
+                    <a href="#" class="btn-read">Read More</a>
+                </div>
+            </div>
+
+            <!-- Blog Card 2 -->
+            <div class="blog-card">
+                <div class="blog-img-placeholder"><i class="fa-solid fa-users-rectangle"></i></div>
+                <div class="blog-content">
+                    <span class="blog-tag">Referrals</span>
+                    <h3>The Secret to Building a Passive Referral Income Network</h3>
+                    <p class="blog-excerpt">
+                        Learn how top earners leverage social media platforms and friend networks to grow their referral balance automatically every single week.
+                    </p>
+                </div>
+                <div class="blog-footer">
+                    <span><i class="fa-regular fa-clock"></i> 5 mins read</span>
+                    <a href="#" class="btn-read">Read More</a>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+</html>
