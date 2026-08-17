@@ -18,6 +18,24 @@
             --dark: #111827;
             --light-bg: #F9FBF8;
             --white: #FFFFFF;
+            --card-bg: #FFFFFF;
+            --text-color: #111827;
+            --text-muted: #6B7280;
+            --border-color: rgba(212, 175, 55, 0.25);
+        }
+
+        [data-theme="dark"] {
+            --primary-green: #0A5C36;
+            --dark-green: #043821;
+            --gold: #D4AF37;
+            --light-gold: rgba(212, 175, 55, 0.1);
+            --dark: #F9FBF8;
+            --light-bg: #0B132B;
+            --white: #1C2541;
+            --card-bg: #1C2541;
+            --text-color: #F9FBF8;
+            --text-muted: #94A3B8;
+            --border-color: rgba(212, 175, 55, 0.2);
         }
 
         * {
@@ -25,11 +43,12 @@
             padding: 0;
             box-sizing: border-box;
             font-family: 'Poppins', sans-serif;
+            transition: background-color 0.3s, color 0.3s, border-color 0.3s;
         }
 
         body {
             background-color: var(--light-bg);
-            color: var(--dark);
+            color: var(--text-color);
             min-height: 100vh;
             padding: 1.5rem 1rem;
             background-image: radial-gradient(rgba(10, 92, 54, 0.12) 1.5px, transparent 1.5px);
@@ -63,8 +82,9 @@
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
             cursor: pointer;
             font-size: 1.1rem;
-            color: var(--dark);
+            color: var(--text-color);
             text-decoration: none;
+            border: 1px solid var(--border-color);
         }
 
         .logo {
@@ -85,46 +105,48 @@
             width: 45px;
         }
 
-        /* Settings Card Group */
-        .settings-section {
-            background: var(--white);
-            border-radius: 20px;
-            padding: 1.2rem;
-            border: 1px solid rgba(212, 175, 55, 0.25);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+        /* Settings Section Group */
+        .settings-group {
             display: flex;
             flex-direction: column;
-            gap: 0.5rem;
+            gap: 0.8rem;
         }
 
-        .settings-title {
-            font-size: 0.85rem;
+        .settings-group h3 {
+            font-size: 0.9rem;
             font-weight: 600;
-            color: #6B7280;
+            color: var(--text-muted);
             text-transform: uppercase;
             letter-spacing: 0.5px;
-            padding: 0.4rem 0.8rem;
+            padding-left: 0.5rem;
+        }
+
+        .settings-card {
+            background: var(--card-bg);
+            border-radius: 16px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+            overflow: hidden;
         }
 
         .setting-item {
             display: flex;
-            align-items: center;
             justify-content: space-between;
-            padding: 0.9rem 0.8rem;
-            border-radius: 12px;
+            align-items: center;
+            padding: 1rem 1.2rem;
             text-decoration: none;
-            color: var(--dark);
-            transition: background 0.2s;
+            color: var(--text-color);
+            border-bottom: 1px solid var(--border-color);
         }
 
-        .setting-item:hover {
-            background: var(--light-bg);
+        .setting-item:last-child {
+            border-bottom: none;
         }
 
         .setting-left {
             display: flex;
             align-items: center;
-            gap: 0.9rem;
+            gap: 1rem;
         }
 
         .setting-icon {
@@ -139,34 +161,75 @@
             font-size: 1rem;
         }
 
-        .setting-info h4 {
+        .setting-title {
             font-size: 0.95rem;
+            font-weight: 500;
+        }
+
+        .setting-right {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* Toggle Switch Style */
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 50px;
+            height: 26px;
+        }
+
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider-toggle {
+            position: absolute;
+            cursor: pointer;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 34px;
+        }
+
+        .slider-toggle:before {
+            position: absolute;
+            content: "";
+            height: 18px;
+            width: 18px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+
+        input:checked + .slider-toggle {
+            background-color: var(--primary-green);
+        }
+
+        input:checked + .slider-toggle:before {
+            transform: translateX(24px);
+        }
+
+        .logout-btn {
+            background: rgba(239, 68, 68, 0.1);
+            color: #EF4444;
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            border-radius: 16px;
+            padding: 1rem;
+            text-align: center;
             font-weight: 600;
-            color: var(--dark);
-        }
-
-        .setting-info p {
-            font-size: 0.75rem;
-            color: #6B7280;
-        }
-
-        .setting-item i.fa-chevron-right {
-            font-size: 0.8rem;
-            color: #9CA3AF;
-        }
-
-        /* Logout button special style */
-        .setting-item.logout .setting-icon {
-            background: #FEE2E2;
-            color: #DC2626;
-        }
-
-        .setting-item.logout h4 {
-            color: #DC2626;
+            font-size: 0.95rem;
+            text-decoration: none;
+            display: block;
+            margin-top: 0.5rem;
         }
     </style>
 </head>
-<body>
+<body data-theme="light">
 
     <div class="container">
         
@@ -177,83 +240,113 @@
             <div class="placeholder-space"></div>
         </header>
 
+        <!-- Preferences Group -->
+        <div class="settings-group">
+            <h3>Preferences</h3>
+            <div class="settings-card">
+                <!-- Dark / Light Mode Switch -->
+                <div class="setting-item">
+                    <div class="setting-left">
+                        <div class="setting-icon" id="themeIcon"><i class="fa-solid fa-moon"></i></div>
+                        <div class="setting-title">Dark Mode</div>
+                    </div>
+                    <div class="setting-right">
+                        <label class="switch">
+                            <input type="checkbox" id="themeToggle" onchange="toggleTheme()">
+                            <span class="slider-toggle"></span>
+                        </label>
+                    </div>
+                </div>
+
+                <a href="#" class="setting-item">
+                    <div class="setting-left">
+                        <div class="setting-icon"><i class="fa-solid fa-globe"></i></div>
+                        <div class="setting-title">Language</div>
+                    </div>
+                    <div class="setting-right">English <i class="fa-solid fa-chevron-right" style="font-size: 0.7rem; margin-left: 5px;"></i></div>
+                </a>
+            </div>
+        </div>
+
         <!-- Account Settings Group -->
-        <div class="settings-section">
-            <div class="settings-title">Account Preferences</div>
-            
-            <a href="#" class="setting-item">
-                <div class="setting-left">
-                    <div class="setting-icon"><i class="fa-solid fa-user-pen"></i></div>
-                    <div class="setting-info">
-                        <h4>Edit Profile</h4>
-                        <p>Update your personal information</p>
+        <div class="settings-group">
+            <h3>Account Settings</h3>
+            <div class="settings-card">
+                <a href="#" class="setting-item">
+                    <div class="setting-left">
+                        <div class="setting-icon"><i class="fa-solid fa-user-pen"></i></div>
+                        <div class="setting-title">Edit Profile</div>
                     </div>
-                </div>
-                <i class="fa-solid fa-chevron-right"></i>
-            </a>
-
-            <a href="#" class="setting-item">
-                <div class="setting-left">
-                    <div class="setting-icon"><i class="fa-solid fa-building-columns"></i></div>
-                    <div class="setting-info">
-                        <h4>Bank Accounts</h4>
-                        <p>Manage your payout accounts</p>
+                    <div class="setting-right"><i class="fa-solid fa-chevron-right" style="font-size: 0.7rem;"></i></div>
+                </a>
+                <a href="#" class="setting-item">
+                    <div class="setting-left">
+                        <div class="setting-icon"><i class="fa-solid fa-lock"></i></div>
+                        <div class="setting-title">Change Password</div>
                     </div>
-                </div>
-                <i class="fa-solid fa-chevron-right"></i>
-            </a>
-
-            <a href="#" class="setting-item">
-                <div class="setting-left">
-                    <div class="setting-icon"><i class="fa-solid fa-shield-halved"></i></div>
-                    <div class="setting-info">
-                        <h4>Security & Password</h4>
-                        <p>Change your password or PIN</p>
+                    <div class="setting-right"><i class="fa-solid fa-chevron-right" style="font-size: 0.7rem;"></i></div>
+                </a>
+                <a href="#" class="setting-item">
+                    <div class="setting-left">
+                        <div class="setting-icon"><i class="fa-solid fa-shield-halved"></i></div>
+                        <div class="setting-title">Security & 2FA</div>
                     </div>
-                </div>
-                <i class="fa-solid fa-chevron-right"></i>
-            </a>
+                    <div class="setting-right"><i class="fa-solid fa-chevron-right" style="font-size: 0.7rem;"></i></div>
+                </a>
+            </div>
         </div>
 
-        <!-- App Preferences Group -->
-        <div class="settings-section">
-            <div class="settings-title">System & Support</div>
-            
-            <a href="#" class="setting-item">
-                <div class="setting-left">
-                    <div class="setting-icon"><i class="fa-solid fa-bell"></i></div>
-                    <div class="setting-info">
-                        <h4>Notifications</h4>
-                        <p>Manage alert preferences</p>
+        <!-- Support Group -->
+        <div class="settings-group">
+            <h3>Support & Legal</h3>
+            <div class="settings-card">
+                <a href="#" class="setting-item">
+                    <div class="setting-left">
+                        <div class="setting-icon"><i class="fa-solid fa-headset"></i></div>
+                        <div class="setting-title">Customer Support</div>
                     </div>
-                </div>
-                <i class="fa-solid fa-chevron-right"></i>
-            </a>
-
-            <a href="#" class="setting-item">
-                <div class="setting-left">
-                    <div class="setting-icon"><i class="fa-solid fa-circle-question"></i></div>
-                    <div class="setting-info">
-                        <h4>Help & Support</h4>
-                        <p>Contact customer service</p>
+                    <div class="setting-right"><i class="fa-solid fa-chevron-right" style="font-size: 0.7rem;"></i></div>
+                </a>
+                <a href="#" class="setting-item">
+                    <div class="setting-left">
+                        <div class="setting-icon"><i class="fa-solid fa-file-contract"></i></div>
+                        <div class="setting-title">Terms of Service</div>
                     </div>
-                </div>
-                <i class="fa-solid fa-chevron-right"></i>
-            </a>
-
-            <a href="index.html" class="setting-item logout">
-                <div class="setting-left">
-                    <div class="setting-icon"><i class="fa-solid fa-right-from-bracket"></i></div>
-                    <div class="setting-info">
-                        <h4>Log Out</h4>
-                        <p>Sign out of your account</p>
-                    </div>
-                </div>
-                <i class="fa-solid fa-chevron-right"></i>
-            </a>
+                    <div class="setting-right"><i class="fa-solid fa-chevron-right" style="font-size: 0.7rem;"></i></div>
+                </a>
+            </div>
         </div>
+
+        <a href="login.html" class="logout-btn"><i class="fa-solid fa-right-from-bracket"></i> Sign Out</a>
 
     </div>
 
+    <script>
+        // Dark / Light Mode Toggle Script
+        const bodyElement = document.body;
+        const themeToggle = document.getElementById('themeToggle');
+        const themeIcon = document.getElementById('themeIcon').querySelector('i');
+
+        // Check for saved user preference in localStorage
+        const currentTheme = localStorage.getItem('naijacash_theme') || 'light';
+        if (currentTheme === 'dark') {
+            bodyElement.setAttribute('data-theme', 'dark');
+            themeToggle.checked = true;
+            themeIcon.className = "fa-solid fa-sun";
+        }
+
+        function toggleTheme() {
+            if (themeToggle.checked) {
+                bodyElement.setAttribute('data-theme', 'dark');
+                localStorage.setItem('naijacash_theme', 'dark');
+                themeIcon.className = "fa-solid fa-sun";
+            } else {
+                bodyElement.setAttribute('data-theme', 'light');
+                localStorage.setItem('naijacash_theme', 'light');
+                themeIcon.className = "fa-solid fa-moon";
+            }
+        }
+    </script>
 </body>
 </html>
+
