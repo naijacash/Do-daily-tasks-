@@ -26,7 +26,12 @@
         .header-icons { display: flex; gap: 0.8rem; }
         .top-pills { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
         .pill-btn { background: var(--white); border: 2px solid var(--gold); padding: 0.9rem; border-radius: 50px; text-align: center; font-weight: 600; color: var(--dark); text-decoration: none; box-shadow: 0 4px 15px rgba(212, 175, 55, 0.15); }
-        .wallet-stack { position: relative; margin-top: 0.5rem; }
+        
+        /* Swipeable Cards Carousel Wrapper */
+        .wallet-stack { position: relative; margin-top: 0.5rem; overflow: hidden; border-radius: 20px; }
+        .wallet-slider { display: flex; transition: transform 0.3s ease-in-out; width: 100%; }
+        .wallet-slide { min-width: 100%; display: flex; flex-direction: column; }
+
         .profile-card { background: linear-gradient(135deg, var(--primary-green), var(--dark-green)); border-radius: 20px 20px 10px 10px; padding: 1.2rem 1.5rem; display: flex; justify-content: space-between; align-items: center; color: var(--white); border: 1px solid rgba(212, 175, 55, 0.3); border-bottom: none; }
         .profile-info { display: flex; align-items: center; gap: 1rem; }
         .profile-pic-container { position: relative; width: 55px; height: 55px; cursor: pointer; }
@@ -38,6 +43,7 @@
         .welcome-text span { font-size: 0.85rem; color: #D1D5DB; }
         .welcome-text h2 { font-size: 1.25rem; font-weight: 600; color: var(--white); }
         .currency-badge { background: rgba(255, 255, 255, 0.15); border: 1px solid rgba(212, 175, 55, 0.4); padding: 0.4rem 0.9rem; border-radius: 50px; font-weight: 600; font-size: 0.9rem; color: var(--white); }
+        
         .main-balance-card { background: linear-gradient(145deg, #075230, #043821); border-radius: 20px; padding: 2rem 1.5rem; color: var(--white); box-shadow: 0 15px 35px rgba(10, 92, 54, 0.3); border: 1px solid rgba(212, 175, 55, 0.4); z-index: 2; }
         .card-label { font-size: 0.95rem; color: #D1D5DB; margin-bottom: 0.3rem; }
         .balance-display { font-size: 2.2rem; font-weight: 700; margin-bottom: 1.5rem; display: flex; align-items: baseline; gap: 0.4rem; }
@@ -48,12 +54,15 @@
         .btn-add-funds { background: transparent; border: 2px solid var(--gold); color: var(--gold); padding: 0.6rem 1.2rem; border-radius: 50px; text-decoration: none; font-weight: 600; }
         .btn-activate { background: linear-gradient(135deg, var(--gold), #B8860B); color: var(--white); border: none; padding: 0.7rem 1.4rem; border-radius: 50px; font-weight: 600; cursor: pointer; flex: 1; text-align: center; }
         .icon-sub-btn { background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(212, 175, 55, 0.3); width: 44px; height: 44px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--gold); }
-        .carousel-dots { display: flex; justify-content: center; gap: 6px; margin-top: 1.2rem; }
-        .dot { width: 8px; height: 8px; border-radius: 50%; background: rgba(255, 255, 255, 0.3); }
+        
+        .carousel-dots { display: flex; justify-content: center; gap: 6px; margin-top: 1.2rem; cursor: pointer; }
+        .dot { width: 8px; height: 8px; border-radius: 50%; background: rgba(255, 255, 255, 0.3); transition: all 0.3s; }
         .dot.active { width: 24px; border-radius: 4px; background: var(--gold); }
+
         .section-header { display: flex; justify-content: space-between; align-items: center; margin-top: 0.5rem; }
         .section-header h3 { font-size: 1.15rem; font-weight: 600; color: var(--dark); }
         .history-pill { background: var(--white); border: 1px solid rgba(212, 175, 55, 0.4); padding: 0.4rem 1rem; border-radius: 50px; font-size: 0.85rem; font-weight: 600; color: var(--primary-green); text-decoration: none; }
+        
         .actions-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.8rem; }
         .action-item { background: var(--white); padding: 1rem 0.5rem; border-radius: 16px; text-align: center; border: 1px solid rgba(212, 175, 55, 0.15); text-decoration: none; display: flex; flex-direction: column; align-items: center; gap: 0.6rem; }
         .action-icon-box { width: 48px; height: 48px; border-radius: 12px; background: var(--light-gold); display: flex; align-items: center; justify-content: center; color: var(--primary-green); font-size: 1.2rem; }
@@ -63,10 +72,10 @@
 <body>
     <div class="dashboard-container">
         <header>
-            <a href="index.html" class="menu-btn" title="Go to Home"><i class="fa-solid fa-house"></i></a>
+            <a href="setting.html" class="menu-btn" title="Settings"><i class="fa-solid fa-gear"></i></a>
             <a href="index.html" class="logo">Naija<span>Cash</span></a>
             <div class="header-icons">
-                <a href="index.html" class="icon-btn" title="Notifications"><i class="fa-regular fa-bell"></i></a>
+                <a href="setting.html" class="icon-btn" title="Settings Menu"><i class="fa-solid fa-sliders"></i></a>
             </div>
         </header>
 
@@ -75,44 +84,112 @@
             <a href="index.html" class="pill-btn">Start blog</a>
         </div>
 
-        <div class="wallet-stack">
-            <div class="profile-card">
-                <div class="profile-info">
-                    <div class="profile-pic-container" title="Click to upload profile picture">
-                        <input type="file" id="profilePicInput" accept="image/*" onchange="previewProfileImage(event)">
-                        <div class="profile-avatar" id="avatarDisplay">
-                            <i class="fa-solid fa-user"></i>
+        <!-- Swipeable Card Stack Container -->
+        <div class="wallet-stack" id="walletStack">
+            <div class="wallet-slider" id="walletSlider">
+                
+                <!-- Slide 1: Jobs Earnings -->
+                <div class="wallet-slide">
+                    <div class="profile-card">
+                        <div class="profile-info">
+                            <div class="profile-pic-container" title="Click to upload profile picture">
+                                <input type="file" id="profilePicInput" accept="image/*" onchange="previewProfileImage(event)">
+                                <div class="profile-avatar" id="avatarDisplay">
+                                    <i class="fa-solid fa-user"></i>
+                                </div>
+                            </div>
+                            <div class="welcome-text">
+                                <span>Welcome back,</span>
+                                <h2>Miracle</h2>
+                            </div>
+                        </div>
+                        <div class="currency-badge">🇳🇬 NGN</div>
+                    </div>
+                    <div class="main-balance-card">
+                        <div class="card-label">Jobs earnings</div>
+                        <div class="balance-display">
+                            14,900.00 <span class="currency-tag">ngn</span>
+                        </div>
+                        <div style="display: flex; flex-direction: column; gap: 0.8rem;">
+                            <div class="card-buttons-row">
+                                <a href="withdraw.html" class="btn-withdraw"><i class="fa-solid fa-wallet"></i> Withdraw</a>
+                                <a href="withdraw.html" class="btn-add-funds">Add Funds</a>
+                            </div>
+                            <div class="card-buttons-row">
+                                <button class="btn-activate">Activate</button>
+                                <button class="icon-sub-btn"><i class="fa-regular fa-clock"></i></button>
+                            </div>
                         </div>
                     </div>
-                    <div class="welcome-text">
-                        <span>Welcome back,</span>
-                        <h2>Miracle</h2>
+                </div>
+
+                <!-- Slide 2: Referral Balance -->
+                <div class="wallet-slide">
+                    <div class="profile-card">
+                        <div class="profile-info">
+                            <div class="profile-avatar"><i class="fa-solid fa-users"></i></div>
+                            <div class="welcome-text">
+                                <span>Program</span>
+                                <h2>Referral Wallet</h2>
+                            </div>
+                        </div>
+                        <div class="currency-badge">🇳🇬 NGN</div>
+                    </div>
+                    <div class="main-balance-card">
+                        <div class="card-label">Referral earnings</div>
+                        <div class="balance-display">
+                            3,600.00 <span class="currency-tag">ngn</span>
+                        </div>
+                        <div style="display: flex; flex-direction: column; gap: 0.8rem;">
+                            <div class="card-buttons-row">
+                                <a href="referral.html" class="btn-withdraw"><i class="fa-solid fa-link"></i> Invite More</a>
+                                <a href="withdraw.html" class="btn-add-funds">Transfer</a>
+                            </div>
+                            <div class="card-buttons-row">
+                                <button class="btn-activate">Cash Out</button>
+                                <button class="icon-sub-btn"><i class="fa-solid fa-chart-line"></i></button>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="currency-badge">🇳🇬 NGN</div>
+
+                <!-- Slide 3: Savings / Task Balance -->
+                <div class="wallet-slide">
+                    <div class="profile-card">
+                        <div class="profile-info">
+                            <div class="profile-avatar"><i class="fa-solid fa-piggy-bank"></i></div>
+                            <div class="welcome-text">
+                                <span>Goal</span>
+                                <h2>Savings Box</h2>
+                            </div>
+                        </div>
+                        <div class="currency-badge">🇳🇬 NGN</div>
+                    </div>
+                    <div class="main-balance-card">
+                        <div class="card-label">Total savings</div>
+                        <div class="balance-display">
+                            25,000.00 <span class="currency-tag">ngn</span>
+                        </div>
+                        <div style="display: flex; flex-direction: column; gap: 0.8rem;">
+                            <div class="card-buttons-row">
+                                <a href="withdraw.html" class="btn-withdraw"><i class="fa-solid fa-vault"></i> Withdraw</a>
+                                <a href="withdraw.html" class="btn-add-funds">Save More</a>
+                            </div>
+                            <div class="card-buttons-row">
+                                <button class="btn-activate">Lock Funds</button>
+                                <button class="icon-sub-btn"><i class="fa-solid fa-shield"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
 
-            <div class="main-balance-card">
-                <div class="card-label">Jobs earnings</div>
-                <div class="balance-display">
-                    14,900.00 <span class="currency-tag">ngn</span>
-                </div>
-                <div style="display: flex; flex-direction: column; gap: 0.8rem;">
-                    <div class="card-buttons-row">
-                        <a href="withdraw.html" class="btn-withdraw"><i class="fa-solid fa-wallet"></i> Withdraw</a>
-                        <a href="withdraw.html" class="btn-add-funds">Add Funds</a>
-                    </div>
-                    <div class="card-buttons-row">
-                        <button class="btn-activate">Activate</button>
-                        <button class="icon-sub-btn"><i class="fa-regular fa-clock"></i></button>
-                    </div>
-                </div>
-                <div class="carousel-dots">
-                    <div class="dot active"></div>
-                    <div class="dot"></div>
-                    <div class="dot"></div>
-                    <div class="dot"></div>
-                </div>
+            <!-- Dots Indicator -->
+            <div class="carousel-dots" id="carouselDots">
+                <div class="dot active" onclick="currentSlide(0)"></div>
+                <div class="dot" onclick="currentSlide(1)"></div>
+                <div class="dot" onclick="currentSlide(2)"></div>
             </div>
         </div>
 
@@ -122,14 +199,15 @@
         </div>
 
         <div class="actions-grid">
-            <a href="withdraw.html" class="action-item"><div class="action-icon-box"><i class="fa-solid fa-clipboard-list"></i></div><span>Jobs</span></a>
-            <a href="withdraw.html" class="action-item"><div class="action-icon-box"><i class="fa-solid fa-bullhorn"></i></div><span>Sponsored</span></a>
-            <a href="withdraw.html" class="action-item"><div class="action-icon-box"><i class="fa-solid fa-users-viewfinder"></i></div><span>Referral</span></a>
-            <a href="withdraw.html" class="action-item"><div class="action-icon-box"><i class="fa-solid fa-store"></i></div><span>Marketplace</span></a>
+            <a href="job.html" class="action-item"><div class="action-icon-box"><i class="fa-solid fa-clipboard-list"></i></div><span>Jobs</span></a>
+            <a href="index.html" class="action-item"><div class="action-icon-box"><i class="fa-solid fa-bullhorn"></i></div><span>Sponsored</span></a>
+            <a href="referral.html" class="action-item"><div class="action-icon-box"><i class="fa-solid fa-users-viewfinder"></i></div><span>Referral</span></a>
+            <a href="index.html" class="action-item"><div class="action-icon-box"><i class="fa-solid fa-store"></i></div><span>Marketplace</span></a>
         </div>
     </div>
 
     <script>
+        // Profile picture preview handler
         function previewProfileImage(event) {
             const file = event.target.files[0];
             if (file) {
@@ -138,6 +216,56 @@
                     document.getElementById('avatarDisplay').innerHTML = `<img src="${e.target.result}" alt="Profile Picture">`;
                 }
                 reader.readAsDataURL(file);
+            }
+        }
+
+        // Swipe & Slide Carousel Logic
+        let currentIdx = 0;
+        const slider = document.getElementById('walletSlider');
+        const dots = document.querySelectorAll('.dot');
+        const totalSlides = dots.length;
+
+        function updateSlidePosition() {
+            slider.style.transform = `translateX(-${currentIdx * 100}%)`;
+            dots.forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentIdx);
+            });
+        }
+
+        function currentSlide(index) {
+            currentIdx = index;
+            updateSlidePosition();
+        }
+
+        // Touch swipe support for mobile sliding
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        const stackElement = document.getElementById('walletStack');
+
+        stackElement.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+        });
+
+        stackElement.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        });
+
+        function handleSwipe() {
+            if (touchEndX < touchStartX - 50) {
+                // Swipe Left
+                if (currentIdx < totalSlides - 1) {
+                    currentIdx++;
+                    updateSlidePosition();
+                }
+            }
+            if (touchEndX > touchStartX + 50) {
+                // Swipe Right
+                if (currentIdx > 0) {
+                    currentIdx--;
+                    updateSlidePosition();
+                }
             }
         }
     </script>
