@@ -4,11 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard - NaijaCash</title>
-    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <!-- FontAwesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
     <style>
         :root {
             --primary-green: #0A5C36;
@@ -19,458 +16,68 @@
             --light-bg: #F9FBF8;
             --white: #FFFFFF;
         }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Poppins', sans-serif;
-        }
-
-        body {
-            background-color: var(--light-bg);
-            color: var(--dark);
-            min-height: 100vh;
-            padding: 1.5rem 1rem;
-            /* Subtle dot-grid background pattern */
-            background-image: radial-gradient(rgba(10, 92, 54, 0.12) 1.5px, transparent 1.5px);
-            background-size: 24px 24px;
-        }
-
-        .dashboard-container {
-            max-width: 480px;
-            margin: 0 auto;
-            display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
-        }
-
-        /* Top Header */
-        header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .menu-btn {
-            background: var(--white);
-            border: none;
-            width: 45px;
-            height: 45px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-            cursor: pointer;
-            font-size: 1.2rem;
-            color: var(--dark);
-        }
-
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--primary-green);
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 4px;
-        }
-
-        .logo span {
-            color: var(--gold);
-        }
-
-        .header-icons {
-            display: flex;
-            gap: 0.8rem;
-        }
-
-        .icon-btn {
-            background: var(--white);
-            border: 1px solid rgba(212, 175, 55, 0.3);
-            width: 45px;
-            height: 45px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-            cursor: pointer;
-            color: var(--primary-green);
-            position: relative;
-        }
-
-        .icon-btn::after {
-            content: '';
-            position: absolute;
-            top: 10px;
-            right: 12px;
-            width: 8px;
-            height: 8px;
-            background-color: var(--gold);
-            border-radius: 50%;
-        }
-
-        /* Action Pills (Advertise / Start blog) */
-        .top-pills {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1rem;
-        }
-
-        .pill-btn {
-            background: var(--white);
-            border: 2px solid var(--gold);
-            padding: 0.9rem;
-            border-radius: 50px;
-            text-align: center;
-            font-weight: 600;
-            color: var(--dark);
-            text-decoration: none;
-            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.15);
-            transition: transform 0.2s;
-        }
-
-        .pill-btn:hover {
-            transform: translateY(-2px);
-            background: var(--light-gold);
-        }
-
-        /* Profile & Card Wrapper Stack */
-        .wallet-stack {
-            position: relative;
-            margin-top: 0.5rem;
-        }
-
-        /* Profile Top Card */
-        .profile-card {
-            background: linear-gradient(135deg, var(--primary-green), var(--dark-green));
-            border-radius: 20px 20px 10px 10px;
-            padding: 1.2rem 1.5rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            color: var(--white);
-            box-shadow: 0 10px 20px rgba(10, 92, 54, 0.15);
-            border: 1px solid rgba(212, 175, 55, 0.3);
-            border-bottom: none;
-        }
-
-        .profile-info {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        /* Profile Picture Container with Upload Trigger */
-        .profile-pic-container {
-            position: relative;
-            width: 55px;
-            height: 55px;
-            cursor: pointer;
-        }
-
-        .profile-pic-container input[type="file"] {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            opacity: 0;
-            cursor: pointer;
-            z-index: 10;
-        }
-
-        .profile-avatar {
-            width: 55px;
-            height: 55px;
-            border-radius: 50%;
-            border: 2px solid var(--gold);
-            background: #E6F4EA;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-        }
-
-        .profile-avatar img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .profile-avatar i {
-            font-size: 1.5rem;
-            color: var(--primary-green);
-        }
-
-        /* Camera overlay badge on hover */
-        .profile-pic-container::after {
-            content: '\f030';
-            font-family: 'Font Awesome 6 Free';
-            font-weight: 900;
-            position: absolute;
-            bottom: 0;
-            right: 0;
-            background: var(--gold);
-            color: var(--dark);
-            font-size: 0.65rem;
-            width: 18px;
-            height: 18px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border: 1px solid var(--white);
-        }
-
-        .welcome-text span {
-            font-size: 0.85rem;
-            color: #D1D5DB;
-        }
-
-        .welcome-text h2 {
-            font-size: 1.25rem;
-            font-weight: 600;
-            color: var(--white);
-        }
-
-        .currency-badge {
-            background: rgba(255, 255, 255, 0.15);
-            border: 1px solid rgba(212, 175, 55, 0.4);
-            padding: 0.4rem 0.9rem;
-            border-radius: 50px;
-            display: flex;
-            align-items: center;
-            gap: 0.4rem;
-            font-weight: 600;
-            font-size: 0.9rem;
-            color: var(--white);
-        }
-
-        /* Main Earning / Balance Card */
-        .main-balance-card {
-            background: linear-gradient(145deg, #075230, #043821);
-            border-radius: 20px;
-            padding: 2rem 1.5rem;
-            color: var(--white);
-            box-shadow: 0 15px 35px rgba(10, 92, 54, 0.3);
-            border: 1px solid rgba(212, 175, 55, 0.4);
-            position: relative;
-            overflow: hidden;
-            z-index: 2;
-        }
-
-        .card-label {
-            font-size: 0.95rem;
-            color: #D1D5DB;
-            margin-bottom: 0.3rem;
-        }
-
-        .balance-display {
-            font-size: 2.2rem;
-            font-weight: 700;
-            margin-bottom: 1.5rem;
-            display: flex;
-            align-items: baseline;
-            gap: 0.4rem;
-            letter-spacing: -0.5px;
-        }
-
-        .balance-display span.currency-tag {
-            font-size: 1.1rem;
-            font-weight: 500;
-            color: var(--gold);
-        }
-
-        .card-buttons-row {
-            display: flex;
-            gap: 0.8rem;
-            align-items: center;
-        }
-
-        .btn-withdraw {
-            background: var(--white);
-            color: var(--dark);
-            padding: 0.7rem 1.4rem;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            transition: transform 0.2s;
-            flex: 1;
-            justify-content: center;
-        }
-
-        .btn-withdraw i {
-            color: var(--primary-green);
-        }
-
-        .btn-add-funds {
-            background: transparent;
-            border: 2px solid var(--gold);
-            color: var(--gold);
-            padding: 0.6rem 1.2rem;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: background 0.2s;
-        }
-
-        .btn-add-funds:hover {
-            background: rgba(212, 175, 55, 0.1);
-        }
-
-        .btn-activate {
-            background: linear-gradient(135deg, var(--gold), #B8860B);
-            color: var(--white);
-            border: none;
-            padding: 0.7rem 1.4rem;
-            border-radius: 50px;
-            font-weight: 600;
-            cursor: pointer;
-            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
-            flex: 1;
-            text-align: center;
-        }
-
-        .icon-sub-btn {
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(212, 175, 55, 0.3);
-            width: 44px;
-            height: 44px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--gold);
-            cursor: pointer;
-        }
-
-        /* Carousel dots */
-        .carousel-dots {
-            display: flex;
-            justify-content: center;
-            gap: 6px;
-            margin-top: 1.2rem;
-        }
-
-        .dot {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.3);
-        }
-
-        .dot.active {
-            width: 24px;
-            border-radius: 4px;
-            background: var(--gold);
-        }
-
-        /* Quick Actions Section */
-        .section-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-top: 0.5rem;
-        }
-
-        .section-header h3 {
-            font-size: 1.15rem;
-            font-weight: 600;
-            color: var(--dark);
-        }
-
-        .history-pill {
-            background: var(--white);
-            border: 1px solid rgba(212, 175, 55, 0.4);
-            padding: 0.4rem 1rem;
-            border-radius: 50px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            color: var(--primary-green);
-            text-decoration: none;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.03);
-        }
-
-        .actions-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 0.8rem;
-        }
-
-        .action-item {
-            background: var(--white);
-            padding: 1rem 0.5rem;
-            border-radius: 16px;
-            text-align: center;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
-            border: 1px solid rgba(212, 175, 55, 0.15);
-            text-decoration: none;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 0.6rem;
-            transition: transform 0.2s;
-        }
-
-        .action-item:hover {
-            transform: translateY(-3px);
-        }
-
-        .action-icon-box {
-            width: 48px;
-            height: 48px;
-            border-radius: 12px;
-            background: var(--light-gold);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--primary-green);
-            font-size: 1.2rem;
-            box-shadow: inset 0 2px 4px rgba(212, 175, 55, 0.2);
-        }
-
-        .action-item span {
-            font-size: 0.8rem;
-            font-weight: 500;
-            color: var(--dark);
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+        body { background-color: var(--light-bg); color: var(--dark); min-height: 100vh; padding: 1.5rem 1rem; background-image: radial-gradient(rgba(10, 92, 54, 0.12) 1.5px, transparent 1.5px); background-size: 24px 24px; }
+        .dashboard-container { max-width: 480px; margin: 0 auto; display: flex; flex-direction: column; gap: 1.5rem; }
+        header { display: flex; justify-content: space-between; align-items: center; }
+        .menu-btn, .icon-btn { background: var(--white); border: none; width: 45px; height: 45px; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05); cursor: pointer; color: var(--primary-green); text-decoration: none; }
+        .logo { font-size: 1.5rem; font-weight: 700; color: var(--primary-green); text-decoration: none; }
+        .logo span { color: var(--gold); }
+        .header-icons { display: flex; gap: 0.8rem; }
+        .top-pills { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+        .pill-btn { background: var(--white); border: 2px solid var(--gold); padding: 0.9rem; border-radius: 50px; text-align: center; font-weight: 600; color: var(--dark); text-decoration: none; box-shadow: 0 4px 15px rgba(212, 175, 55, 0.15); }
+        .wallet-stack { position: relative; margin-top: 0.5rem; }
+        .profile-card { background: linear-gradient(135deg, var(--primary-green), var(--dark-green)); border-radius: 20px 20px 10px 10px; padding: 1.2rem 1.5rem; display: flex; justify-content: space-between; align-items: center; color: var(--white); border: 1px solid rgba(212, 175, 55, 0.3); border-bottom: none; }
+        .profile-info { display: flex; align-items: center; gap: 1rem; }
+        .profile-pic-container { position: relative; width: 55px; height: 55px; cursor: pointer; }
+        .profile-pic-container input[type="file"] { position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0; cursor: pointer; z-index: 10; }
+        .profile-avatar { width: 55px; height: 55px; border-radius: 50%; border: 2px solid var(--gold); background: #E6F4EA; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+        .profile-avatar img { width: 100%; height: 100%; object-fit: cover; }
+        .profile-avatar i { font-size: 1.5rem; color: var(--primary-green); }
+        .profile-pic-container::after { content: '\f030'; font-family: 'Font Awesome 6 Free'; font-weight: 900; position: absolute; bottom: 0; right: 0; background: var(--gold); color: var(--dark); font-size: 0.65rem; width: 18px; height: 18px; border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 1px solid var(--white); }
+        .welcome-text span { font-size: 0.85rem; color: #D1D5DB; }
+        .welcome-text h2 { font-size: 1.25rem; font-weight: 600; color: var(--white); }
+        .currency-badge { background: rgba(255, 255, 255, 0.15); border: 1px solid rgba(212, 175, 55, 0.4); padding: 0.4rem 0.9rem; border-radius: 50px; font-weight: 600; font-size: 0.9rem; color: var(--white); }
+        .main-balance-card { background: linear-gradient(145deg, #075230, #043821); border-radius: 20px; padding: 2rem 1.5rem; color: var(--white); box-shadow: 0 15px 35px rgba(10, 92, 54, 0.3); border: 1px solid rgba(212, 175, 55, 0.4); z-index: 2; }
+        .card-label { font-size: 0.95rem; color: #D1D5DB; margin-bottom: 0.3rem; }
+        .balance-display { font-size: 2.2rem; font-weight: 700; margin-bottom: 1.5rem; display: flex; align-items: baseline; gap: 0.4rem; }
+        .balance-display span.currency-tag { font-size: 1.1rem; font-weight: 500; color: var(--gold); }
+        .card-buttons-row { display: flex; gap: 0.8rem; align-items: center; }
+        .btn-withdraw { background: var(--white); color: var(--dark); padding: 0.7rem 1.4rem; border-radius: 50px; text-decoration: none; font-weight: 600; display: inline-flex; align-items: center; gap: 0.5rem; flex: 1; justify-content: center; }
+        .btn-withdraw i { color: var(--primary-green); }
+        .btn-add-funds { background: transparent; border: 2px solid var(--gold); color: var(--gold); padding: 0.6rem 1.2rem; border-radius: 50px; text-decoration: none; font-weight: 600; }
+        .btn-activate { background: linear-gradient(135deg, var(--gold), #B8860B); color: var(--white); border: none; padding: 0.7rem 1.4rem; border-radius: 50px; font-weight: 600; cursor: pointer; flex: 1; text-align: center; }
+        .icon-sub-btn { background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(212, 175, 55, 0.3); width: 44px; height: 44px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--gold); }
+        .carousel-dots { display: flex; justify-content: center; gap: 6px; margin-top: 1.2rem; }
+        .dot { width: 8px; height: 8px; border-radius: 50%; background: rgba(255, 255, 255, 0.3); }
+        .dot.active { width: 24px; border-radius: 4px; background: var(--gold); }
+        .section-header { display: flex; justify-content: space-between; align-items: center; margin-top: 0.5rem; }
+        .section-header h3 { font-size: 1.15rem; font-weight: 600; color: var(--dark); }
+        .history-pill { background: var(--white); border: 1px solid rgba(212, 175, 55, 0.4); padding: 0.4rem 1rem; border-radius: 50px; font-size: 0.85rem; font-weight: 600; color: var(--primary-green); text-decoration: none; }
+        .actions-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.8rem; }
+        .action-item { background: var(--white); padding: 1rem 0.5rem; border-radius: 16px; text-align: center; border: 1px solid rgba(212, 175, 55, 0.15); text-decoration: none; display: flex; flex-direction: column; align-items: center; gap: 0.6rem; }
+        .action-icon-box { width: 48px; height: 48px; border-radius: 12px; background: var(--light-gold); display: flex; align-items: center; justify-content: center; color: var(--primary-green); font-size: 1.2rem; }
+        .action-item span { font-size: 0.8rem; font-weight: 500; color: var(--dark); }
     </style>
 </head>
 <body>
-
     <div class="dashboard-container">
-        
-        <!-- Header -->
         <header>
-            <button class="menu-btn"><i class="fa-solid fa-bars"></i></button>
+            <a href="index.html" class="menu-btn" title="Go to Home"><i class="fa-solid fa-house"></i></a>
             <a href="index.html" class="logo">Naija<span>Cash</span></a>
             <div class="header-icons">
-                <button class="icon-btn"><i class="fa-regular fa-moon"></i></button>
-                <button class="icon-btn"><i class="fa-regular fa-bell"></i></button>
+                <a href="index.html" class="icon-btn" title="Notifications"><i class="fa-regular fa-bell"></i></a>
             </div>
         </header>
 
-        <!-- Top Navigation Pills -->
         <div class="top-pills">
-            <a href="#" class="pill-btn">Advertise</a>
-            <a href="#" class="pill-btn">Start blog</a>
+            <a href="index.html" class="pill-btn">Advertise</a>
+            <a href="index.html" class="pill-btn">Start blog</a>
         </div>
 
-        <!-- Wallet Stack -->
         <div class="wallet-stack">
-            
-            <!-- Profile Top Layer -->
             <div class="profile-card">
                 <div class="profile-info">
-                    <!-- Profile Picture Section with File Picker -->
                     <div class="profile-pic-container" title="Click to upload profile picture">
                         <input type="file" id="profilePicInput" accept="image/*" onchange="previewProfileImage(event)">
                         <div class="profile-avatar" id="avatarDisplay">
@@ -482,31 +89,24 @@
                         <h2>Miracle</h2>
                     </div>
                 </div>
-                <div class="currency-badge">
-                    🇳🇬 NGN
-                </div>
+                <div class="currency-badge">🇳🇬 NGN</div>
             </div>
 
-            <!-- Main Balance Card Layer -->
             <div class="main-balance-card">
                 <div class="card-label">Jobs earnings</div>
                 <div class="balance-display">
                     14,900.00 <span class="currency-tag">ngn</span>
                 </div>
-                
-                <!-- Action Buttons layout matching reference -->
                 <div style="display: flex; flex-direction: column; gap: 0.8rem;">
                     <div class="card-buttons-row">
-                        <a href="#" class="btn-withdraw"><i class="fa-solid fa-wallet"></i> Withdraw</a>
-                        <a href="#" class="btn-add-funds">Add Funds</a>
+                        <a href="withdraw.html" class="btn-withdraw"><i class="fa-solid fa-wallet"></i> Withdraw</a>
+                        <a href="withdraw.html" class="btn-add-funds">Add Funds</a>
                     </div>
                     <div class="card-buttons-row">
                         <button class="btn-activate">Activate</button>
                         <button class="icon-sub-btn"><i class="fa-regular fa-clock"></i></button>
                     </div>
                 </div>
-
-                <!-- Carousel Dots -->
                 <div class="carousel-dots">
                     <div class="dot active"></div>
                     <div class="dot"></div>
@@ -514,45 +114,28 @@
                     <div class="dot"></div>
                 </div>
             </div>
-
         </div>
 
-        <!-- Quick Actions Section -->
         <div class="section-header">
             <h3>Quick Actions</h3>
-            <a href="#" class="history-pill">Activity history</a>
+            <a href="withdraw.html" class="history-pill">Activity history</a>
         </div>
 
         <div class="actions-grid">
-            <a href="#" class="action-item">
-                <div class="action-icon-box"><i class="fa-solid fa-clipboard-list"></i></div>
-                <span>Jobs</span>
-            </a>
-            <a href="#" class="action-item">
-                <div class="action-icon-box"><i class="fa-solid fa-bullhorn"></i></div>
-                <span>Sponsored</span>
-            </a>
-            <a href="#" class="action-item">
-                <div class="action-icon-box"><i class="fa-solid fa-users-viewfinder"></i></div>
-                <span>Referral</span>
-            </a>
-            <a href="#" class="action-item">
-                <div class="action-icon-box"><i class="fa-solid fa-store"></i></div>
-                <span>Marketplace</span>
-            </a>
+            <a href="withdraw.html" class="action-item"><div class="action-icon-box"><i class="fa-solid fa-clipboard-list"></i></div><span>Jobs</span></a>
+            <a href="withdraw.html" class="action-item"><div class="action-icon-box"><i class="fa-solid fa-bullhorn"></i></div><span>Sponsored</span></a>
+            <a href="withdraw.html" class="action-item"><div class="action-icon-box"><i class="fa-solid fa-users-viewfinder"></i></div><span>Referral</span></a>
+            <a href="withdraw.html" class="action-item"><div class="action-icon-box"><i class="fa-solid fa-store"></i></div><span>Marketplace</span></a>
         </div>
-
     </div>
 
-    <!-- JavaScript to handle profile picture upload preview -->
     <script>
         function previewProfileImage(event) {
             const file = event.target.files[0];
             if (file) {
                 const reader = new FileReader();
                 reader.onload = function(e) {
-                    const avatarDisplay = document.getElementById('avatarDisplay');
-                    avatarDisplay.innerHTML = `<img src="${e.target.result}" alt="Profile Picture">`;
+                    document.getElementById('avatarDisplay').innerHTML = `<img src="${e.target.result}" alt="Profile Picture">`;
                 }
                 reader.readAsDataURL(file);
             }
@@ -560,4 +143,3 @@
     </script>
 </body>
 </html>
-
