@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sponsored Ads - NaijaCash</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary-green: #0A5C36;
+            --dark-green: #064E3B;
+            --gold: #D4AF37;
+            --light-gold: #FDF8E2;
+            --dark: #111827;
+            --light-bg: #F9FBF8;
+            --white: #FFFFFF;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: var(--light-bg);
+            color: var(--dark);
+            min-height: 100vh;
+            padding: 1.5rem 1rem;
+            background-image: radial-gradient(rgba(10, 92, 54, 0.12) 1.5px, transparent 1.5px);
+            background-size: 24px 24px;
+        }
+
+        .container {
+            max-width: 480px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        /* Header */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .back-btn {
+            background: var(--white);
+            border: none;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            cursor: pointer;
+            font-size: 1.1rem;
+            color: var(--dark);
+            text-decoration: none;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-green);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .logo span {
+            color: var(--gold);
+        }
+
+        .placeholder-space {
+            width: 45px;
+        }
+
+        /* Top Banner */
+        .sponsorship-banner {
+            background: linear-gradient(145deg, #075230, #043821);
+            border-radius: 20px;
+            padding: 1.5rem;
+            color: var(--white);
+            box-shadow: 0 15px 35px rgba(10, 92, 54, 0.3);
+            border: 1px solid rgba(212, 175, 55, 0.4);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .sponsorship-banner h2 {
+            font-size: 1.3rem;
+            margin-bottom: 0.2rem;
+        }
+
+        .sponsorship-banner p {
+            font-size: 0.85rem;
+            color: #D1D5DB;
+        }
+
+        .create-ad-btn {
+            background: linear-gradient(135deg, var(--gold), #B8860B);
+            color: var(--white);
+            border: none;
+            padding: 0.6rem 1rem;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.8rem;
+            cursor: pointer;
+            text-decoration: none;
+            box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3);
+            white-space: nowrap;
+        }
+
+        /* Ads List Container */
+        .ads-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .ad-card {
+            background: var(--white);
+            border-radius: 16px;
+            padding: 1.2rem;
+            border: 1px solid rgba(212, 175, 55, 0.25);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+
+        .ad-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        .ad-title-area {
+            display: flex;
+            gap: 0.8rem;
+            align-items: center;
+        }
+
+        .ad-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            background: var(--light-gold);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-green);
+            font-size: 1.1rem;
+            flex-shrink: 0;
+        }
+
+        .ad-title-area h3 {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        .ad-title-area span {
+            font-size: 0.75rem;
+            color: #6B7280;
+        }
+
+        .ad-status {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--primary-green);
+            background: #E6F4EA;
+            padding: 0.3rem 0.7rem;
+            border-radius: 50px;
+            white-space: nowrap;
+        }
+
+        .ad-description {
+            font-size: 0.85rem;
+            color: #4B5563;
+            line-height: 1.4;
+        }
+
+        .ad-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid #F3F4F6;
+            padding-top: 0.7rem;
+            font-size: 0.8rem;
+            color: #6B7280;
+        }
+
+        .btn-view-ad {
+            background: var(--primary-green);
+            color: var(--white);
+            border: none;
+            padding: 0.4rem 1rem;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.8rem;
+            cursor: pointer;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <!-- Header -->
+        <header>
+            <a href="dashboard.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i></a>
+            <a href="index.html" class="logo">Naija<span>Cash</span></a>
+            <div class="placeholder-space"></div>
+        </header>
+
+        <!-- Banner -->
+        <div class="sponsorship-banner">
+            <div>
+                <h2>Sponsored Ads</h2>
+                <p>Promote your business or link</p>
+            </div>
+            <a href="#" class="create-ad-btn"><i class="fa-solid fa-plus"></i> New Ad</a>
+        </div>
+
+        <!-- Ads List -->
+        <div class="ads-list">
+            
+            <!-- Ad Card 1 -->
+            <div class="ad-card">
+                <div class="ad-header">
+                    <div class="ad-title-area">
+                        <div class="ad-icon"><i class="fa-solid fa-bullhorn"></i></div>
+                        <div>
+                            <h3>Crypto Trading Masterclass</h3>
+                            <span>Sponsored Banner</span>
+                        </div>
+                    </div>
+                    <div class="ad-status">Active</div>
+                </div>
+                <div class="ad-description">
+                    Learn how to trade crypto profitably from scratch. Daily signals and expert mentorship available.
+                </div>
+                <div class="ad-footer">
+                    <span><i class="fa-regular fa-eye"></i> 1.4k Reach</span>
+                    <a href="#" class="btn-view-ad">Boost Ad</a>
+                </div>
+            </div>
+
+            <!-- Ad Card 2 -->
+            <div class="ad-card">
+                <div class="ad-header">
+                    <div class="ad-title-area">
+                        <div class="ad-icon"><i class="fa-solid fa-store"></i></div>
+                        <div>
+                            <h3>Affordable Gadgets Lagos</h3>
+                            <span>E-Commerce Promotion</span>
+                        </div>
+                    </div>
+                    <div class="ad-status">Active</div>
+                </div>
+                <div class="ad-description">
+                    Get brand new iPhones, Laptops, and accessories delivered directly to your doorstep anywhere in Nigeria.
+                </div>
+                <div class="ad-footer">
+                    <span><i class="fa-regular fa-eye"></i> 3.2k Reach</span>
+                    <a href="#" class="btn-view-ad">Boost Ad</a>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+</html>
